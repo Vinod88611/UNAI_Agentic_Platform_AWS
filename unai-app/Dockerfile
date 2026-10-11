@@ -7,6 +7,8 @@ COPY package.json ./
 # python3 to this image later if persistent SQLite is actually needed.
 RUN npm install --omit=dev --no-audit --no-fund || true
 COPY . .
+COPY qdrant-ca.pem /app/certs/qdrant-ca.pem
+ENV NODE_EXTRA_CA_CERTS=/app/certs/qdrant-ca.pem
 ENV NODE_ENV=production
 EXPOSE 8080
 CMD ["node", "server.js"]

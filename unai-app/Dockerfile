@@ -1,10 +1,5 @@
 FROM node:22-slim
 WORKDIR /app
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        python3 \
-        build-essential \
-    && rm -rf /var/lib/apt/lists/*
 COPY package.json ./
 # better-sqlite3 is an optionalDependency — if it can't build without native
 # toolchain in this slim image, npm skips it and server.js falls back to

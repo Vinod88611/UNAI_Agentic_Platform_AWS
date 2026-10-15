@@ -8,7 +8,7 @@ phases:
       - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
       - ECR_REGISTRY=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       #- IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG="${CODEBUILD_RESOLVED_SOURCE_VERSION:0:7}-$(date =%s)"
+      - IMAGE_TAG="${CODEBUILD_RESOLVED_SOURCE_VERSION:0:7}-$(date +%s)"
       
       - echo "AWS Account = $AWS_ACCOUNT_ID"
       - echo "AWS Region = $AWS_DEFAULT_REGION"

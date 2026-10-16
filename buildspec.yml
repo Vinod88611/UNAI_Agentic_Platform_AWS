@@ -29,8 +29,8 @@ phases:
     commands:
       - echo "Pushing Docker image to Amazon ECR..."
       - docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-      - printf '[{"name":"unai-app","imageUri":"%s"}]' "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" > imagedefinitions.json
-      - cat imagedefinitions.json
+      - printf '[{"name":"unai-app","imageUri":"%s"}]' "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" > "$CODEBUILD_SRC_DIR/imagedefinitions.json"
+      - cat "$CODEBUILD_SRC_DIR/imagedefinitions.json"      
       - echo "Successfully pushed $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 artifacts:
   files:
